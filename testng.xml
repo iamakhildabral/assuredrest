@@ -1,0 +1,7 @@
+<suite name="Suite1" verbose="1" parallel="methods" thread-count="5">
+    <test name="testpack">
+        <packages>
+            <package name="org.example.*"/>
+        </packages>
+    </test>
+</suite>
