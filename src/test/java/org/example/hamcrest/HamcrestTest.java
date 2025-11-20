@@ -14,7 +14,7 @@ public class HamcrestTest {
     }
 
     @Test
-    public void testignoreCase(){
+    public void testIgnoreCase(){
         assertThat("akhildabral",startsWithIgnoringCase("AKHILD"));
     }
 
