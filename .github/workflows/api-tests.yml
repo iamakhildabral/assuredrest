@@ -1,0 +1,46 @@
+name: API Tests (Maven)
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'   # speeds up builds
+
+#      - name: Configure environment
+#        env:
+#          # You can set defaults here or use secrets.
+#          BASE_URL: ${{ secrets.BASE_URL }}
+#          API_TOKEN: ${{ secrets.API_TOKEN }}
+#        run: |
+#          echo "BASE_URL=${BASE_URL}" >> $GITHUB_ENV
+#          echo "API_TOKEN=${API_TOKEN}" >> $GITHUB_ENV
+
+      - name: Run tests
+        run: mvn -B -ntp test
+        # If you use profiles or need to pass env values:
+        # run: mvn -B -ntp test -DbaseUrl=${{ env.BASE_URL }} -DapiToken=${{ env.API_TOKEN }}
+
+      - name: Publish test reports (JUnit/TestNG)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: |
+            target/surefire-reports/**
+            target/failsafe-reports/**
