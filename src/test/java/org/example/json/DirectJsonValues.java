@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 @Test(enabled = false)
 public class DirectJsonValues {
 
-    @Test
+    @Test(enabled = false)
     void verifyDirectValues(){
         RestAssured.given()
                 .get("https://fakestoreapi.com/users/5")
