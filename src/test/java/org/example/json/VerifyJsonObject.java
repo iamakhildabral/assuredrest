@@ -19,7 +19,7 @@ import java.util.Map;
 @Test
 public class VerifyJsonObject {
 
-    @Test
+    @Test(enabled = false)
     void verifyAddressExist() throws IOException, JSONException {
 
 

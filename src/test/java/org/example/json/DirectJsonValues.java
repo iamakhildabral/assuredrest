@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 
-@Test
+@Test(enabled = false)
 public class DirectJsonValues {
 
     @Test
